@@ -1,3 +1,4 @@
+
 function actualizarEstado() {
     fetch('/obtener_estado/')
         .then(response => response.json())
@@ -13,6 +14,18 @@ function actualizarEstado() {
             }
             text.textContent = estado.toUpperCase();
             label.textContent = estado;
+        });
+
+    fetch('/obtener_preparacion/')
+        .then(response => response.json())
+        .then(data => {
+            let prep = data.preparacion;
+            let prepDiv = document.getElementById('preparacion-indicador');
+            if (prep) {
+                prepDiv.style.visibility = 'visible';
+            } else {
+                prepDiv.style.visibility = 'hidden';
+            }
         });
 }
 setInterval(actualizarEstado, 1000);

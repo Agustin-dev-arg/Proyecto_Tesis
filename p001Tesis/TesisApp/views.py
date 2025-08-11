@@ -2,6 +2,25 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
+preparacion_activa = False  # Estado inicial de preparación
+
+@csrf_exempt
+def actualizar_preparacion(request):
+    global preparacion_activa
+    if request.method == "POST":
+        valor = request.POST.get("preparacion")
+    else:
+        valor = request.GET.get("preparacion")
+    if valor in ["true", "false"]:
+        preparacion_activa = (valor == "true")
+        return JsonResponse({"status": "ok", "preparacion": preparacion_activa})
+    return JsonResponse({"status": "error", "mensaje": "Valor inválido"}, status=400)
+
+def obtener_preparacion(request):
+    global preparacion_activa
+    return JsonResponse({'preparacion': preparacion_activa})
+
+
 @csrf_exempt
 def actualizar_estado(request):
     global estado_actual

@@ -6,4 +6,6 @@ urlpatterns = [
     path('recibir_mensaje/', views.recibir_mensaje, name='recibir_mensaje'),
     path('obtener_estado/', views.obtener_estado, name='obtener_estado'),
     path('actualizar_estado/', views.actualizar_estado, name='actualizar_estado'),
+    path('actualizar_preparacion/', views.actualizar_preparacion, name='actualizar_preparacion'),
+    path('obtener_preparacion/', views.obtener_preparacion, name='obtener_preparacion'),
 ]
