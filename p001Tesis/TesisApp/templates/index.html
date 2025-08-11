@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Control Etiquetadora</title>
+</head>
+<body>
+    <h1>Control Etiquetadora</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="accion" value="start">Start</button>
+        <button type="submit" name="accion" value="stop">Stop</button>
+    </form>
+    <div style="
+        width: 200px;
+        height: 100px;
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: white;
+        border-radius: 10px;
+        background-color: {% if estado == 'start' %}#28a745{% else %}#dc3545{% endif %};
+        border: 2px solid #333;">
+        {{ estado|upper }}
+    </div>
+    <p>Estado actual: <strong>{{ estado }}</strong></p>
+</body>
+</html>
