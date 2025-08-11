@@ -1,4 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse
+
 @csrf_exempt
 def actualizar_estado(request):
     global estado_actual
@@ -10,10 +13,6 @@ def actualizar_estado(request):
         estado_actual = accion
         return JsonResponse({"status": "ok", "estado": estado_actual})
     return JsonResponse({"status": "error", "mensaje": "Acción inválida"}, status=400)
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-
-# Create your views here.
 
 #Definimos una prueba basica para determinar si el ESP32 esta conectado a la red o no.
 

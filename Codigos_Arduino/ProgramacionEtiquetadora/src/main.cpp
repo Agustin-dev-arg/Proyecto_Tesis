@@ -102,7 +102,15 @@ void loop() {
       buttonStateStart = readingStart;
       if (buttonStateStart == LOW) { // Asumiendo botón activo en LOW
         Serial.println("Botón START presionado");
-        // Aquí va la lógica para sincronizar con Django (enviar estado 'start')
+        // Sincronizar con Django (enviar estado 'start')
+        if (WiFi.status() == WL_CONNECTED) {
+          HTTPClient http;
+          http.begin("http://192.168.1.7:8000/actualizar_estado/?accion=start");
+          int httpCode = http.GET();
+          Serial.print("Respuesta Django START: ");
+          Serial.println(httpCode);
+          http.end();
+        }
       }
     }
   }
@@ -118,7 +126,15 @@ void loop() {
       buttonStateStop = readingStop;
       if (buttonStateStop == LOW) { // Asumiendo botón activo en LOW
         Serial.println("Botón STOP presionado");
-        // Aquí va la lógica para sincronizar con Django (enviar estado 'stop')
+        // Sincronizar con Django (enviar estado 'stop')
+        if (WiFi.status() == WL_CONNECTED) {
+          HTTPClient http;
+          http.begin("http://192.168.1.7:8000/actualizar_estado/?accion=stop");
+          int httpCode = http.GET();
+          Serial.print("Respuesta Django STOP: ");
+          Serial.println(httpCode);
+          http.end();
+        }
       }
     }
   }

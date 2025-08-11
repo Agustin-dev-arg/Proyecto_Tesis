@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Control Etiquetadora</title>
+    <script src="{% static 'js/estado.js' %}"></script>
 </head>
 <body>
     <h1>Control Etiquetadora</h1>
@@ -10,7 +12,7 @@
         <button type="submit" name="accion" value="start">Start</button>
         <button type="submit" name="accion" value="stop">Stop</button>
     </form>
-    <div style="
+    <div id="estado-box" style="
         width: 200px;
         height: 100px;
         margin: 20px 0;
@@ -23,8 +25,10 @@
         border-radius: 10px;
         background-color: {% if estado == 'start' %}#28a745{% else %}#dc3545{% endif %};
         border: 2px solid #333;">
-        {{ estado|upper }}
+        <span id="estado-text">{{ estado|upper }}</span>
     </div>
-    <p>Estado actual: <strong>{{ estado }}</strong></p>
+    <p>Estado actual: <strong id="estado-label">{{ estado }}</strong></p>
+
+
 </body>
 </html>
