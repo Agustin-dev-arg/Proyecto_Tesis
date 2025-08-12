@@ -8,6 +8,9 @@
 const char *ssid = "Personal-410";
 const char *password = "xRKkJYf5UM";
 
+//const char *ssid = "Redmi 13C";
+//const char *password = "b5993895458f";
+
 HTTPClient http;
 AsyncWebServer server(80);
 
@@ -69,8 +72,11 @@ void setup() {
   Serial.print("Dirección IP asignada: ");
   Serial.println(WiFi.localIP());
 
+  //PC Escritorio
   String peticion = "http://192.168.1.7:8000/recibir_mensaje/?mensaje=" + WiFi.localIP().toString();
 
+  //Notebook
+  //String peticion = "http://192.168.220.162:8000/recibir_mensaje/?mensaje=" + WiFi.localIP().toString();
   Serial.println(peticion);
 
   http.begin(peticion.c_str());
